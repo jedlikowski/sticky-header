@@ -18,6 +18,10 @@ new StickyHeader();
 new StickyHeader(options);
 ```
 
+Also make sure to include the CSS styles for the header somewhere in your project. 
+ You can use autoprefixed, production-ready .css file available in ```node_modules/sticky-header/dist/sticky-header.css```
+ or import .scss file from ```node_modules/sticky-header/src/sticky-header.scss```
+
 # Options
 | Option   | Type                       | Default value  | Notes                                                                                     |
 |----------|----------------------------|----------------|-------------------------------------------------------------------------------------------|
