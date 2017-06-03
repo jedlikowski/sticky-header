@@ -2,7 +2,7 @@ import throttle from 'lodash/throttle';
 import isElement from 'lodash/isElement';
 import isString from 'lodash/isString';
 
-import './sticky-header.scss';
+// import './sticky-header.scss';
 
 export default class StickyHeader {
   scrollPosition = 0;
