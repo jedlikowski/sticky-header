@@ -1,0 +1,16 @@
+.sticky-header.sticky-stick {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-transform: translate(0, -102%);
+          transform: translate(0, -102%);
+  z-index: 100;
+}
+
+.sticky-header.sticky-stick.sticky-show {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
