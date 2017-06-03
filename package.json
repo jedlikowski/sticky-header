@@ -2,7 +2,7 @@
   "name": "sticky-header",
   "version": "1.0.0",
   "description": "Vanilla JavaScript module to create a header that sticks to the top of the page while you scroll.",
-  "main": "src/sticky-header.js",
+  "main": "./dist/sticky-header.js",
   "dependencies": {
     "lodash": "^4.17.4"
   },
