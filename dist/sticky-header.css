@@ -5,12 +5,12 @@
   width: 100%;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  -webkit-transform: translate(0, -102%);
-          transform: translate(0, -102%);
+  -webkit-transform: translate3d(0, -102%, 100px);
+          transform: translate3d(0, -102%, 100px);
   z-index: 100;
 }
 
 .sticky-header.sticky-stick.sticky-show {
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
+  -webkit-transform: translate3d(0, 0, 100px);
+          transform: translate3d(0, 0, 100px);
 }

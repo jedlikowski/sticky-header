@@ -5,11 +5,11 @@
     left: 0;
     width: 100%;
     transition: all 0.3s ease;
-    transform: translate(0, -102%);
+    transform: translate3d(0, -102%, 100px);
     z-index: 100;
 
     &.sticky-show {
-      transform: translate(0, 0);
+      transform: translate3d(0, 0, 100px);
     }
   }
 }
