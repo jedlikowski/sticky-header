@@ -13,6 +13,9 @@ module.exports = {
     // the output bundle
     path: resolve(__dirname, 'dist'),
     publicPath: '/',
+    library: 'sticky-header',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
   },
   context: resolve(__dirname, 'src'),
   resolve: {
@@ -63,7 +66,6 @@ module.exports = {
       },
     ],
   },
-
   plugins: [
     new ExtractTextPlugin('[name].css'),
   ],
