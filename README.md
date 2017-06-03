@@ -4,7 +4,9 @@ Vanilla JavaScript module to create a header that sticks to the top of the page 
 # Installation
 
 ```npm install https://github.com/jedlikowski/sticky-header.git```
+
 or
+
 ```yarn add https://github.com/jedlikowski/sticky-header.git```
 
 # Usage
