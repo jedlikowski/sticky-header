@@ -26,6 +26,13 @@ new StickyHeader();
 new StickyHeader(options);
 ```
 
+If at any point in time you want to disable of the sticky header, you can do it with destroy() method, as shown below. It will remove all event listeners StickyHeader set up when initialized.
+
+```ecmascript 6
+const stickyHeader = new StickyHeader();
+stickyHeader.destroy();
+```
+
 Also make sure to include the CSS styles for the header somewhere in your project. 
  You can use autoprefixed, production-ready .css file available in ```node_modules/sticky-header/dist/sticky-header.css```
  or import .scss file from ```node_modules/sticky-header/src/sticky-header.scss```
