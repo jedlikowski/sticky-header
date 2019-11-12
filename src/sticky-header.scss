@@ -1,3 +1,7 @@
+.sticky-header-placeholder {
+  display: none;
+}
+
 .sticky-header {
   &.sticky-stick {
     position: fixed;
@@ -10,6 +14,10 @@
 
     &.sticky-show {
       transform: translate3d(0, 0, 100px);
+    }
+
+    & ~ .sticky-header-placeholder {
+      display: block;
     }
   }
 }

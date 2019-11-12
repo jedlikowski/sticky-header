@@ -1,6 +1,7 @@
 import _isElement from 'lodash/isElement';
 import _isString from 'lodash/isString';
 import _throttle from 'lodash/throttle';
+import autobind from 'auto-bind';
 
 // import './sticky-header.scss';
 
@@ -18,11 +19,15 @@ export default class StickyHeader {
   autoHide = true;
 
   classNames = {
+    header: 'sticky-header',
+    placeholder: 'sticky-header-placeholder',
     stick: 'sticky-stick',
     show: 'sticky-show'
   };
 
   constructor(params) {
+    autobind(this);
+
     const options = { ...this.defaultOptions, ...params };
     // Set scroll wrapper if present in params
     if (options.wrapper) {
@@ -49,21 +54,32 @@ export default class StickyHeader {
       throw new Error('StickyHeader is missing scroll parent!');
     }
 
-    if (!this.header.classList.contains('sticky-header')) {
-      this.header.classList.add('sticky-header');
+    // add core css class to the header if missing
+    if (!this.header.classList.contains(this.classNames.header)) {
+      this.header.classList.add(this.classNames.header);
     }
 
     this.autoHide = options.autoHide;
 
-    this.handleScroll = _throttle(this.handleScroll.bind(this), 10);
+    this.handleScroll = _throttle(this.handleScroll, 10);
     this.scrollParent.addEventListener('scroll', this.handleScroll);
     this.scrollPosition = this.calculateScrollPosition();
     this.headerOffsetTop = this.header.offsetTop || 0;
     this.headerHeight = this.header.offsetHeight;
+    this.placeholder = this.initPlaceholder();
 
     if (!this.autoHide) {
       this.header.classList.add(this.classNames.show);
     }
+  }
+
+  initPlaceholder() {
+    const placeholder = document.createElement('div');
+    placeholder.className = this.classNames.placeholder;
+    placeholder.style.paddingTop = `${this.headerHeight}px`;
+    this.header.parentElement.append(placeholder);
+
+    return placeholder;
   }
 
   handleScroll() {
@@ -100,35 +116,27 @@ export default class StickyHeader {
   }
 
   fixHeader() {
-    if (!this.header.classList.contains(this.classNames.stick)) {
-      this.header.style.transitionDuration = '0ms'; // 0ms transition to avoid hiding animation after first fixing
-
-      if (_isElement(this.scrollParent)) {
-        this.scrollParent.style.paddingTop = `${this.headerHeight}px`;
-      } else {
-        document.body.style.paddingTop = `${this.headerHeight}px`;
-      }
-
-      this.header.classList.add(this.classNames.stick);
-      setTimeout(() => {
-        this.header.style.transitionDuration = '';
-      }, 500);
+    if (this.header.classList.contains(this.classNames.stick)) {
+      return;
     }
+    this.header.style.transitionDuration = '0ms'; // 0ms transition to avoid hiding animation after first fixing
+
+    this.header.classList.add(this.classNames.stick);
+    setTimeout(() => {
+      this.header.style.transitionDuration = '';
+    }, 500);
   }
 
   unfixHeader() {
-    if (this.header.classList.contains(this.classNames.stick)) {
-      if (_isElement(this.scrollParent)) {
-        this.scrollParent.style.paddingTop = '';
-      } else {
-        document.body.style.paddingTop = '';
-      }
+    // already unfixed
+    if (!this.header.classList.contains(this.classNames.stick)) {
+      return;
+    }
 
-      this.header.style.transitionDuration = '0ms'; // 0ms transition to avoid hiding animation after first fixing
-      this.header.classList.remove(this.classNames.stick);
-      if (this.autoHide) {
-        this.header.classList.remove(this.classNames.show);
-      }
+    this.header.style.transitionDuration = '0ms'; // 0ms transition to avoid hiding animation after first fixing
+    this.header.classList.remove(this.classNames.stick);
+    if (this.autoHide) {
+      this.header.classList.remove(this.classNames.show);
     }
   }
 

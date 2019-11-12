@@ -4,6 +4,7 @@
   "description": "Vanilla JavaScript module to create a header that sticks to the top of the page while you scroll.",
   "main": "dist/index.js",
   "dependencies": {
+    "auto-bind": "^3.0.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
