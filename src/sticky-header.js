@@ -71,7 +71,7 @@ export default class StickyHeader {
 
     if (newPosition < this.scrollPosition) {
       // scrolling up
-      if (newPosition <= this.headerOffsetTop + this.headerHeight) {
+      if (newPosition <= this.headerOffsetTop) {
         this.unfixHeader();
       } else if (this.autoHide) {
         this.showFixedHeader();
@@ -82,7 +82,7 @@ export default class StickyHeader {
         this.hideFixedHeader();
       }
 
-      if (newPosition >= this.headerOffsetTop + this.headerHeight) {
+      if (newPosition >= this.headerOffsetTop) {
         this.fixHeader();
       }
     }
